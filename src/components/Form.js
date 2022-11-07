@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-const Form = (props) => {
+const Form = ({ todoList, setToDoList }) => {
   const [itemToDoList, setItemTodoList] = useState("");
-  const [todoList, setToDoList] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (itemToDoList !== "") {
       setItemTodoList(itemToDoList);
-      setToDoList([...todoList, itemToDoList]);
+      const newTodoList = [...todoList];
+      setToDoList(newTodoList);
       console.log("itemToDoList =>", itemToDoList);
-      console.log("todoList =>", todoList);
+      console.log("todoList =>", newTodoList);
     } else {
       alert("attention champ vide !");
     }

@@ -1,20 +1,19 @@
 import "./App.css";
+import { useState } from "react";
 
 import Form from "./components/Form";
 
 function App() {
-  // let todolist = [];
-
-  // {
-  //   todolist = todoList.map((todolist, index) => {
-  //     return <p key={index}>todolist</p>;
-  //   });
-  // }
+  const [todoList, setToDoList] = useState([]);
 
   return (
     <div className="App">
-      {/* <div>{todolist}</div> */}
-      <Form />
+      <div>
+        {todoList.map((todolist, index) => {
+          return <div key={index}>{todoList}</div>;
+        })}
+      </div>
+      <Form todoList={todoList} setToDoList={setToDoList} />
     </div>
   );
 }
