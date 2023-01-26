@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../App.css";
 
 const Form = ({ todoList, setToDoList }) => {
   const [itemToDoList, setItemTodoList] = useState("");
@@ -25,12 +26,12 @@ const Form = ({ todoList, setToDoList }) => {
               setItemTodoList(event.target.value);
             }}
             type="text"
-            placeholder="new task"
+            placeholder="nouvelle tâche"
             value={itemToDoList}
             name="inputText"
           ></input>
 
-          <input type="submit" value="Add task"></input>
+          <input type="submit" value="Ajouter une tâche"></input>
         </form>
       </div>
     </div>
