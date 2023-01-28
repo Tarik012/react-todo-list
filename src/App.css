@@ -1,12 +1,13 @@
 .App {
+  /*si responsive, supprimmer le max-width*/
   max-width: 1225px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.div-form {
-  background-color: aqua;
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* HEADER */
@@ -23,4 +24,72 @@
 .list-alt {
   color: #5c47d3;
   margin: 0 30px;
+}
+
+/* TASKS */
+.tasksList {
+  display: flex;
+  list-style-type: none;
+  padding: 50px 20px;
+  width: 400px;
+  flex-direction: column;
+}
+
+.tasksList li {
+  display: flex;
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-right: 15px;
+}
+
+/* FORM */
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+form > input {
+  flex: 4;
+  font-size: 18px;
+  border: 1px solid #5c47d3;
+  box-sizing: border-box;
+  vertical-align: middle;
+  outline: none;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #f2f7fd;
+  padding-left: 10px;
+}
+
+/* FOOTER */
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  color: #5c47d3;
+}
+
+.footer-container > div {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* GESTION DU RESPONSIVE DESIGN */
+@media (max-width: 700px) {
+  /*à renseigner*/
 }
