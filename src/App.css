@@ -42,6 +42,24 @@
   margin-right: 15px;
 }
 
+.tasksList > input {
+  flex: 1;
+}
+
+.tasks span {
+  margin-left: 30px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.trash {
+  margin-left: auto;
+  cursor: pointer;
+  color: #5c47d3;
+}
+
 /* FORM */
 
 form {

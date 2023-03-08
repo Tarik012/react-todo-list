@@ -34,7 +34,13 @@ function App() {
     } else {
       // on effectue une copie superficielle du tableau des tâches
       // en ajoutant la nouvelle tâche avec son nom et son statut dans un objet
-      let newTasks = [...tasks, { name: input, done: false }];
+      let newTasks = [
+        ...tasks,
+        {
+          name: input.length > 30 ? input.substring(0, 30) + "..." : input,
+          done: false,
+        },
+      ];
       // on met à jour le state contenant le tableau des tâches
       setTasks(newTasks);
       // on réinitialize la valeur de l'input
@@ -42,10 +48,32 @@ function App() {
     }
   };
 
+  // fonction déclenchée quand on clique sur la checkbox
+  const handleClickCheck = (index) => {
+    let newTasks = [...tasks];
+    // avec l'index, je modifie la valeur de la clé done de la tâche
+    newTasks[index].done = !newTasks[index].done;
+    setTasks(newTasks);
+  };
+
+  // fonction déclenchée quand on clique sur la poubelle
+  const handleClickTrash = (index) => {
+    let newTasks = [...tasks];
+    // avec l'index, je supprime la tâche du tableau
+    // indexOf renvoie la 1ere occurence sinon -1
+    // splice renvoie le tableau sans l'occurence
+    newTasks.splice(newTasks.indexOf(newTasks[index]), 1);
+    setTasks(newTasks);
+  };
+
   return (
     <div className="App">
       <Header />
-      <Tasks tasks={tasks} />
+      <Tasks
+        tasks={tasks}
+        handleClickCheck={handleClickCheck}
+        handleClickTrash={handleClickTrash}
+      />
       <Form
         handleChange={handleChange}
         handleSubmit={handleSubmit}
