@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Tasks from "./components/Tasks";
+import CheckedTasks from "./components/CheckedTasks";
 import Footer from "./components/Footer";
 
 // import des icônes list et poubelle
@@ -18,6 +19,8 @@ function App() {
   const [input, setInput] = useState("");
   // state pour stocker la liste des tâches dans un tableau
   const [tasks, setTasks] = useState([]);
+  // state pour stocker la liste des tâches dans un tableau
+  const [checkedTasks, setCheckedTasks] = useState([]);
 
   // fonction déclenchée quand on renseigne l'input du formulaire
   const handleChange = (event) => {
@@ -54,6 +57,21 @@ function App() {
     // avec l'index, je modifie la valeur de la clé done de la tâche
     newTasks[index].done = !newTasks[index].done;
     setTasks(newTasks);
+
+    // je crée une copie du tableau que sera dans le useState (pour le réutiliser) contenant les tâches barrées pour les afficher en dessous du formulaire
+    // pas de copie du tableau initial sinon à chaque fois il sera supprimé (il ne contiendra qu'un seul élément)
+    let tab = [...checkedTasks];
+    tab.push(newTasks[index]);
+
+    // console.log("tab =>", tab);
+    // console.log("checkedTasks =>", checkedTasks);
+
+    // je supprime cette tâche barrée de la liste des tâches (au dessus du formulaire)
+    newTasks.splice(newTasks.indexOf(newTasks[index]), 1);
+    setTasks(newTasks);
+
+    //je mets à jour le state des tâches barrées
+    setCheckedTasks(tab);
   };
 
   // fonction déclenchée quand on clique sur la poubelle
@@ -64,6 +82,11 @@ function App() {
     // splice renvoie le tableau sans l'occurence
     newTasks.splice(newTasks.indexOf(newTasks[index]), 1);
     setTasks(newTasks);
+  };
+
+  // fonction déclenchée au clic sur la corbeille pour supprimer les tâches barrées
+  const handleDeleteCheckedTasks = () => {
+    setCheckedTasks([]);
   };
 
   return (
@@ -80,6 +103,10 @@ function App() {
         input={input}
       />
       <Footer />
+      <CheckedTasks
+        checkedTasks={checkedTasks}
+        handleDeleteCheckedTasks={handleDeleteCheckedTasks}
+      />
     </div>
   );
 }
